@@ -4,13 +4,13 @@ interface FooterProps {}
 
 const Footer: React.FC<FooterProps> = () => {
   return (
-    <footer id="contact" className="bg-gray-900 text-white py-12 md:py-16">
+    <footer id="contact" className="bg-black border-t border-gray-800 text-white py-12 md:py-16">
       <div className="container-custom">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
           <div>
             <h3 className="text-2xl font-bold mb-4">Karta Jati Integrasi</h3>
             <p className="text-gray-400 mb-4">
-              Solusi Integrasi Teknologi untuk Kebutuhan anda
+              Solusi Integrasi Teknologi dan Digitalisasi Kebutuhan anda
             </p>
           </div>
           
