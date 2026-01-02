@@ -19,9 +19,6 @@ module.exports = {
   ],
   flags: {
     FAST_DEV: true,
-    PRESERVE_WEBPACK_CACHE: false,
-    PRESERVE_FILE_DOWNLOAD_CACHE: false,
-    PARALLEL_SOURCING: false,
-    DETECT_NODE_MUTATIONS: false,
+    USE_LMDB: false,
   },
 }

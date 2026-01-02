@@ -3,10 +3,6 @@
   "devCommand": "npm run develop",
   "installCommand": "npm install",
   "framework": "gatsby",
-  "outputDirectory": "public",
-  "env": {
-    "GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES": "true",
-    "NODE_OPTIONS": "--max-old-space-size=4096"
-  }
+  "outputDirectory": "public"
 }
 
