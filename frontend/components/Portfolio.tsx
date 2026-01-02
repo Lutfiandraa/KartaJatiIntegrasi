@@ -1,5 +1,6 @@
 import * as React from "react"
 import { FaFolder } from "react-icons/fa"
+import Particles from "./Particles"
 
 interface PortfolioItem {
   title: string
@@ -14,21 +15,23 @@ const Portfolio: React.FC<PortfolioProps> = () => {
   const portfolioItems: PortfolioItem[] = [
     { title: "PPID Kementerian Pariwisata dan Ekonomi Kreatif" },
     { title: "E-Hibah BPKD Pemprov DKI Jakarta" },
-    { title: "Migrasi dan Setup Email Kementerian Pariwisata dan Ekonomi Kreatif" },
-    { title: "Pengembangan Aplikasi Mobile Kementerian Pariwisata dan Ekonomi Kreatif" },
-    { title: "Pengembangan mesin antrean Kementrian Pariwisata" },
-    { title: "E-belanja pegawai provinsi DKI Jakarta" }
+    { title: "Migrasi dan Setup Email Kementerian Pariwisata dan Ekonomi Kreatif" }
   ]
 
   React.useEffect(() => {
     if (typeof window === "undefined") return
 
+    let gsapInstance: any = null
+
     import("gsap").then(({ gsap }) => {
+      gsapInstance = gsap
       if (!titleRef.current) return
+
+      const portfolioBoxElements = portfolioBoxRefs.current.filter(Boolean)
 
       // Set initial state
       gsap.set(titleRef.current, { opacity: 0, y: 30 })
-      gsap.set(portfolioBoxRefs.current.filter(Boolean), { opacity: 0, y: 40 })
+      gsap.set(portfolioBoxElements, { opacity: 0, y: 40 })
 
       // Animate title
       gsap.to(titleRef.current, {
@@ -39,20 +42,30 @@ const Portfolio: React.FC<PortfolioProps> = () => {
       })
 
       // Animate portfolio boxes with stagger
-      gsap.to(portfolioBoxRefs.current.filter(Boolean), {
-        opacity: 1,
-        y: 0,
-        duration: 0.7,
-        ease: "power3.out",
-        stagger: 0.08,
-        delay: 0.3,
-      })
+      if (portfolioBoxElements.length > 0) {
+        gsap.to(portfolioBoxElements, {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: "power3.out",
+          stagger: 0.08,
+          delay: 0.3,
+        })
+      }
     })
+
+    // Cleanup
+    return () => {
+      if (gsapInstance && titleRef.current) {
+        gsapInstance.killTweensOf([titleRef.current, ...portfolioBoxRefs.current])
+      }
+    }
   }, [])
 
   return (
-    <section id="portfolio" className="py-16 md:py-24 bg-black">
-      <div className="container-custom">
+    <section id="portfolio" className="relative py-16 md:py-24 bg-black overflow-hidden">
+      <Particles id="particles-js-portfolio" />
+      <div className="container-custom relative z-10">
         <div className="text-center mb-12 md:mb-16">
           <h2 
             ref={titleRef}
@@ -66,7 +79,7 @@ const Portfolio: React.FC<PortfolioProps> = () => {
           {portfolioItems.map((item, index) => (
             <div
               key={index}
-              ref={(el) => (portfolioBoxRefs.current[index] = el)}
+              ref={(el) => { portfolioBoxRefs.current[index] = el }}
               className="bg-gray-600/30 backdrop-blur-sm border border-gray-500/40 p-6 rounded-lg hover:border-gray-500/60 transition-all duration-300 min-h-[200px] flex items-center justify-center"
             >
               <div className="text-center">

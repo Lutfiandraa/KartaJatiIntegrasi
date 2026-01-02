@@ -13,10 +13,8 @@ const Header: React.FC<HeaderProps> = () => {
 
       // Show navbar when scrolling up, hide when scrolling down
       if (currentScrollY < lastScrollY) {
-        // Scrolling up
         setIsVisible(true)
       } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        // Scrolling down and past 100px
         setIsVisible(false)
       }
 
@@ -29,7 +27,9 @@ const Header: React.FC<HeaderProps> = () => {
     }
 
     window.addEventListener("scroll", handleScroll, { passive: true })
-    return () => window.removeEventListener("scroll", handleScroll)
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    }
   }, [lastScrollY])
 
   return (
@@ -38,26 +38,56 @@ const Header: React.FC<HeaderProps> = () => {
         isVisible ? "translate-y-0" : "-translate-y-32"
       }`}
     >
-      <nav className="bg-gray-500/10 backdrop-blur-sm rounded-[80px] shadow-sm border border-gray-400/20">
-        <div className="relative flex items-center justify-between h-16 md:h-20 px-6 md:px-8">
+      <nav className="bg-gray-500/10 backdrop-blur-sm rounded-[90px] shadow-sm border border-gray-400/20">
+        <div className="relative flex items-center justify-between h-12 md:h-14 px-4 md:px-6">
           <div className="flex-shrink-0">
-            <a href="/" className="text-2xl md:text-3xl font-bold text-white">
+            <a href="/" className="text-xl md:text-2xl font-bold text-white">
               Karta Jati
             </a>
           </div>
           
           {/* Desktop Menu - Centered */}
-          <div className="hidden md:flex md:absolute md:left-1/2 md:transform md:-translate-x-1/2 md:space-x-8">
-            <a href="#about" className="text-gray-300 hover:text-white transition-colors font-medium">
+          <nav className="hidden md:flex md:absolute md:left-1/2 md:transform md:-translate-x-1/2 md:space-x-8" aria-label="Main navigation">
+            <a 
+              href="#about" 
+              className="text-gray-300 hover:text-white transition-colors font-medium"
+              onClick={(e) => {
+                e.preventDefault()
+                const element = document.getElementById('about')
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                }
+              }}
+            >
               About
             </a>
-            <a href="#services" className="text-gray-300 hover:text-white transition-colors font-medium">
+            <a 
+              href="#services" 
+              className="text-gray-300 hover:text-white transition-colors font-medium"
+              onClick={(e) => {
+                e.preventDefault()
+                const element = document.getElementById('services')
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                }
+              }}
+            >
               Service
             </a>
-            <a href="#portfolio" className="text-gray-300 hover:text-white transition-colors font-medium">
+            <a 
+              href="#portfolio" 
+              className="text-gray-300 hover:text-white transition-colors font-medium"
+              onClick={(e) => {
+                e.preventDefault()
+                const element = document.getElementById('portfolio')
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                }
+              }}
+            >
               Showcase
             </a>
-          </div>
+          </nav>
 
           {/* Mobile Menu Button */}
           <button
@@ -66,7 +96,7 @@ const Header: React.FC<HeaderProps> = () => {
             aria-label="Toggle menu"
           >
             <svg
-              className="h-6 w-6"
+              className="h-5 w-5"
               fill="none"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -85,29 +115,56 @@ const Header: React.FC<HeaderProps> = () => {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 px-6 space-y-4">
+          <nav className="md:hidden py-3 px-4 space-y-3" aria-label="Mobile navigation">
             <a
               href="#about"
               className="block text-gray-300 hover:text-white transition-colors font-medium"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={(e) => {
+                e.preventDefault()
+                setIsMenuOpen(false)
+                const element = document.getElementById('about')
+                if (element) {
+                  setTimeout(() => {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                  }, 100)
+                }
+              }}
             >
               About
             </a>
             <a
               href="#services"
               className="block text-gray-300 hover:text-white transition-colors font-medium"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={(e) => {
+                e.preventDefault()
+                setIsMenuOpen(false)
+                const element = document.getElementById('services')
+                if (element) {
+                  setTimeout(() => {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                  }, 100)
+                }
+              }}
             >
               Service
             </a>
             <a
               href="#portfolio"
               className="block text-gray-300 hover:text-white transition-colors font-medium"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={(e) => {
+                e.preventDefault()
+                setIsMenuOpen(false)
+                const element = document.getElementById('portfolio')
+                if (element) {
+                  setTimeout(() => {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                  }, 100)
+                }
+              }}
             >
               Showcase
             </a>
-          </div>
+          </nav>
         )}
       </nav>
     </header>

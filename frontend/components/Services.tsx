@@ -1,5 +1,6 @@
 import * as React from "react"
 import { FaLink, FaLaptopCode, FaGlobe, FaTimes, FaExternalLinkAlt } from "react-icons/fa"
+import Particles from "./Particles"
 
 interface Service {
   title: string
@@ -35,8 +36,8 @@ const Services: React.FC<ServicesProps> = () => {
       hasPortfolio: true
     },
     {
-      title: "Instalasi Infrastruktur Jaringan",
-      description: "Layanan jasa konsultan sarana prasarana teknologi informasi dengan biaya yang terjangkau ke seluruh pelosok nusantara",
+      title: "Internet Of Things",
+      description: "(Coming Soon)",
       icon: <FaGlobe className="text-5xl text-white" />,
       hasPortfolio: true
     }
@@ -44,17 +45,13 @@ const Services: React.FC<ServicesProps> = () => {
 
   const portfolioData: Record<string, PortfolioItem[]> = {
     "Integrasi Sistem": [
-      { title: "PPID Kementerian Pariwisata dan Ekonomi Kreatif", url: "#" },
-      { title: "E-Hibah BPKD Pemprov DKI Jakarta", url: "#" },
-      { title: "Migrasi dan Setup Email Kementerian Pariwisata dan Ekonomi Kreatif", url: "#" }
+      { title: "Sistem Portal Berita terintegrasi dengan NewsAPI & Twelve Data API (Maintenance)", url: "https://portal-berita-pi.vercel.app/" }
     ],
     "Digitalisasi": [
-      { title: "Gerobar (Usaha Mikro Kecil Menengah", url: "https://gerobar-umkm.vercel.app/" }
+      { title: "Gerobar (Usaha Mikro Kecil Menengah)", url: "https://gerobar-umkm.vercel.app/" }
     ],
-    "Instalasi Infrastruktur Jaringan": [
-      { title: "Pengembangan Aplikasi Mobile Kementerian Pariwisata dan Ekonomi Kreatif", url: "#" },
-      { title: "Pengembangan mesin antrean Kementrian Pariwisata", url: "#" },
-      { title: "E-belanja pegawai provinsi DKI Jakarta", url: "#" }
+    "Internet Of Things": [
+      { title: "(Coming Soon)", url: "#" }
     ]
   }
 
@@ -73,12 +70,17 @@ const Services: React.FC<ServicesProps> = () => {
   React.useEffect(() => {
     if (typeof window === "undefined") return
 
+    let gsapInstance: any = null
+
     import("gsap").then(({ gsap }) => {
+      gsapInstance = gsap
       if (!titleRef.current || !descRef.current) return
+
+      const serviceBoxElements = serviceBoxRefs.current.filter(Boolean)
 
       // Set initial state
       gsap.set([titleRef.current, descRef.current], { opacity: 0, y: 30 })
-      gsap.set(serviceBoxRefs.current.filter(Boolean), { opacity: 0, y: 40 })
+      gsap.set(serviceBoxElements, { opacity: 0, y: 40 })
 
       // Animate title and description
       gsap.to([titleRef.current, descRef.current], {
@@ -90,21 +92,31 @@ const Services: React.FC<ServicesProps> = () => {
       })
 
       // Animate service boxes with stagger
-      gsap.to(serviceBoxRefs.current.filter(Boolean), {
-        opacity: 1,
-        y: 0,
-        duration: 0.7,
-        ease: "power3.out",
-        stagger: 0.1,
-        delay: 0.4,
-      })
+      if (serviceBoxElements.length > 0) {
+        gsap.to(serviceBoxElements, {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: "power3.out",
+          stagger: 0.1,
+          delay: 0.4,
+        })
+      }
     })
+
+    // Cleanup
+    return () => {
+      if (gsapInstance && titleRef.current && descRef.current) {
+        gsapInstance.killTweensOf([titleRef.current, descRef.current, ...serviceBoxRefs.current])
+      }
+    }
   }, [])
 
   return (
     <>
-      <section id="services" className="py-16 md:py-24 bg-black">
-        <div className="container-custom">
+      <section id="services" className="relative py-16 md:py-24 bg-black overflow-hidden">
+        <Particles id="particles-js-services" />
+        <div className="container-custom relative z-10">
           <div className="text-center mb-12 md:mb-16">
             <h2 
               ref={titleRef}
@@ -114,7 +126,7 @@ const Services: React.FC<ServicesProps> = () => {
             </h2>
             <p 
               ref={descRef}
-              className="text-lg text-gray-400 max-w-3xl mx-auto"
+              className="text-base md:text-lg text-gray-400 max-w-3xl mx-auto px-4"
             >
               Karta Jati Integrasi membantu mitra bisnis dalam memahami dan memanfaatkan teknologi secara cepat, tepat dan efisien. 
               Dengan mengandalkan inovasi, kreativitas, pengalaman dan penguasaan teknologi hardware, software dan jaringan.
@@ -125,7 +137,7 @@ const Services: React.FC<ServicesProps> = () => {
             {services.map((service, index) => (
               <div
                 key={index}
-                ref={(el) => (serviceBoxRefs.current[index] = el)}
+                ref={(el) => { serviceBoxRefs.current[index] = el }}
                 onClick={() => handleServiceClick(service)}
                 className={`bg-gray-600/30 backdrop-blur-sm border border-gray-500/40 p-8 rounded-lg transition-all duration-300 ${
                   service.hasPortfolio 
@@ -173,18 +185,29 @@ const Services: React.FC<ServicesProps> = () => {
               <div className={`flex ${currentPortfolio.length === 1 ? 'justify-center' : ''}`}>
                 <div className={`grid ${currentPortfolio.length === 1 ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2'} gap-4 w-full`}>
                   {currentPortfolio.map((item, index) => (
-                    <a
-                      key={index}
-                      href={item.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`group bg-gray-600/30 backdrop-blur-sm border border-gray-500/40 rounded-lg p-6 hover:border-gray-500/60 transition-all duration-200 flex items-center justify-between ${currentPortfolio.length === 1 ? 'w-full max-w-2xl mx-auto' : 'w-full'}`}
-                    >
-                      <span className="text-white group-hover:text-gray-200 transition-colors flex-1 pr-4">
-                        {item.title}
-                      </span>
-                      <FaExternalLinkAlt className="text-gray-400 group-hover:text-white transition-colors flex-shrink-0" />
-                    </a>
+                    item.title === "(Coming Soon)" ? (
+                      <div
+                        key={index}
+                        className={`bg-gray-600/30 backdrop-blur-sm border border-gray-500/40 rounded-lg p-6 flex items-center justify-center ${currentPortfolio.length === 1 ? 'w-full max-w-2xl mx-auto' : 'w-full'}`}
+                      >
+                        <span className="text-gray-400 text-lg font-medium">
+                          {item.title}
+                        </span>
+                      </div>
+                    ) : (
+                      <a
+                        key={index}
+                        href={item.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`group bg-gray-600/30 backdrop-blur-sm border border-gray-500/40 rounded-lg p-6 hover:border-gray-500/60 transition-all duration-200 flex items-center justify-between ${currentPortfolio.length === 1 ? 'w-full max-w-2xl mx-auto' : 'w-full'}`}
+                      >
+                        <span className="text-white group-hover:text-gray-200 transition-colors flex-1 pr-4">
+                          {item.title}
+                        </span>
+                        <FaExternalLinkAlt className="text-gray-400 group-hover:text-white transition-colors flex-shrink-0" />
+                      </a>
+                    )
                   ))}
                 </div>
               </div>

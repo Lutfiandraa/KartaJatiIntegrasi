@@ -24,5 +24,60 @@
   .btn-secondary {
     @apply bg-transparent text-white px-6 py-3 rounded-lg font-semibold border-2 border-gray-600 hover:border-gray-400 transition-colors duration-200;
   }
+
+  /* Hero Section with Particles */
+  .hero-section {
+    @apply bg-black min-h-screen flex items-center;
+    position: relative;
+  }
+
+  /* Particles Container - Full Background */
+  .particles-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+
+  .particles-container canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  /* Technology Ticker Animation */
+  .animate-scroll {
+    animation: scroll 25s linear infinite;
+    display: inline-flex;
+    align-items: center;
+    will-change: transform;
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-scroll:hover {
+    animation-play-state: paused;
+  }
+
+  /* Performance optimizations */
+  .particles-container canvas {
+    will-change: transform;
+  }
+
+  /* Responsive optimizations */
+  @media (max-width: 768px) {
+    .hero-section {
+      min-height: auto;
+    }
+  }
 }
 

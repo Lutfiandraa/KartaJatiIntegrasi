@@ -1,11 +1,13 @@
 import * as React from "react"
+import Particles from "./Particles"
 
 interface FooterProps {}
 
 const Footer: React.FC<FooterProps> = () => {
   return (
-    <footer id="contact" className="bg-black border-t border-gray-800 text-white py-12 md:py-16">
-      <div className="container-custom">
+    <footer id="contact" className="relative bg-black/80 backdrop-blur-sm border-t border-gray-800 text-white py-12 md:py-16 overflow-hidden">
+      <Particles id="particles-js-footer" />
+      <div className="container-custom relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
           <div>
             <h3 className="text-2xl font-bold mb-4">Karta Jati Integrasi</h3>
@@ -22,14 +24,8 @@ const Footer: React.FC<FooterProps> = () => {
                   support@kartajati.co.id
                 </a>
               </p>
-              <p>
-                <a href="tel:+6287770772978" className="hover:text-white transition-colors">
-                  0877 7077 2978
-                </a>
-              </p>
               <p className="mt-4">
-                RUKO DE MANSION, JL.JALUR SUTERA TIM. No.C-5, RT.002/RW.014, 
-                KUNCIRAN, KEC.PINANG, KOTA TANGERANG, BANTEN 15143
+                Bintaro, Sanur Software House (SSH), Kota Tangerang, Banten
               </p>
             </div>
           </div>
