@@ -56,7 +56,14 @@ typings/
 
 # gatsby files
 .cache/
+.cache/
+public/
 public
+# Gatsby cache and build files
+.cache/
+public/
+# Vercel
+.vercel
 
 # Mac files
 .DS_Store
