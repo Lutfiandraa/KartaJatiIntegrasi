@@ -11,7 +11,4 @@ module.exports = {
     `gatsby-plugin-postcss`,
     `gatsby-plugin-typescript`,
   ],
-  flags: {
-    USE_LMDB: false,
-  },
 }
