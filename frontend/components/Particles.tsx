@@ -1,4 +1,4 @@
-import * as React from "react"
+import React, { useRef, useEffect } from "react"
 
 interface ParticlesProps {
   id: string
@@ -10,10 +10,10 @@ declare global {
   }
 }
 
-const Particles: React.FC<ParticlesProps> = ({ id }) => {
-  const particlesRef = React.useRef<HTMLDivElement>(null)
+const Particles = ({ id }: ParticlesProps) => {
+  const particlesRef = useRef<HTMLDivElement | null>(null)
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (typeof window === "undefined") return
 
     // Initialize particles.js with brighter configuration

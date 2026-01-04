@@ -7,3 +7,14 @@ if (!process.env.GATSBY_EXPERIMENTAL_FORCE_FS_STORE) {
   process.env.GATSBY_EXPERIMENTAL_FORCE_FS_STORE = 'true'
 }
 
+// Provide React globally for react-icons during SSR
+exports.onCreateWebpackConfig = ({ actions, plugins }) => {
+  actions.setWebpackConfig({
+    plugins: [
+      plugins.provide({
+        React: require.resolve('react'),
+      }),
+    ],
+  })
+}
+
