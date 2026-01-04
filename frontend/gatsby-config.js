@@ -1,10 +1,4 @@
 /**
- * Configure your Gatsby site with this file.
- *
- * See: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/
- */
-
-/**
  * @type {import('gatsby').GatsbyConfig}
  */
 module.exports = {
@@ -18,7 +12,6 @@ module.exports = {
     `gatsby-plugin-typescript`,
   ],
   flags: {
-    FAST_DEV: true,
     USE_LMDB: false,
   },
 }
