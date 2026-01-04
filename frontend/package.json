@@ -6,6 +6,7 @@
   "license": "0BSD",
   "scripts": {
     "build": "gatsby clean && gatsby build",
+    "build:vercel": "gatsby clean && GATSBY_EXPERIMENTAL_FORCE_FS_STORE=true gatsby build",
     "dev": "gatsby develop",
     "develop": "gatsby develop",
     "start": "gatsby develop",

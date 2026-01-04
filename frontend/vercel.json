@@ -3,6 +3,9 @@
   "buildCommand": "npm run build",
   "devCommand": "npm run develop",
   "installCommand": "npm install --legacy-peer-deps",
-  "outputDirectory": "public"
+  "outputDirectory": "public",
+  "env": {
+    "GATSBY_EXPERIMENTAL_FORCE_FS_STORE": "true"
+  }
 }
 
