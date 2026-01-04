@@ -86,7 +86,7 @@ const About: React.FC<AboutProps> = () => {
             ref={(el) => { descRefs.current[0] = el }}
             className="text-base md:text-lg text-gray-400 leading-relaxed text-center"
           >
-            Karta Jati Integrasi hadir sebagai mitra teknologi yang menyederhanakan kompleksitas menjadi solusi yang terstruktur, efektif, dan bernilai. Melalui prinsip "Simplified Your Solution", kami berfokus pada pendekatan yang tepat guna untuk membantu mitra mencapai hasil optimal di era digital.
+            Karta Jati Integrasi hadir sebagai mitra teknologi yang menyederhanakan kompleksitas menjadi solusi yang terstruktur melalui prinsip "Simplified Your Solution", kami berfokus pada pendekatan yang tepat guna untuk membantu mitra mencapai hasil optimal di era digital.
           </p>
         </div>
 
