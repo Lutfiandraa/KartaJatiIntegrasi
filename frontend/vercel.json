@@ -1,11 +1,12 @@
 {
   "framework": "gatsby",
-  "buildCommand": "npm run build",
+  "buildCommand": "GATSBY_EXPERIMENTAL_FORCE_FS_STORE=true npm run build",
   "devCommand": "npm run develop",
   "installCommand": "npm install --legacy-peer-deps",
   "outputDirectory": "public",
   "env": {
-    "GATSBY_EXPERIMENTAL_FORCE_FS_STORE": "true"
+    "GATSBY_EXPERIMENTAL_FORCE_FS_STORE": "true",
+    "NODE_ENV": "production"
   }
 }
 
