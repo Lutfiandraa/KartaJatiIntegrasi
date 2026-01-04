@@ -1,4 +1,5 @@
 import * as React from "react"
+import { GiPineTree } from "react-icons/gi"
 
 interface HeaderProps {}
 
@@ -40,14 +41,14 @@ const Header: React.FC<HeaderProps> = () => {
     >
       <nav className="bg-gray-500/10 backdrop-blur-sm rounded-[90px] shadow-sm border border-gray-400/20">
         <div className="relative flex items-center justify-between h-12 md:h-14 px-4 md:px-6">
-          <div className="flex-shrink-0">
-            <a href="/" className="text-xl md:text-2xl font-bold text-white">
-              Karta Jati
+          <div className="flex-shrink-0 z-10">
+            <a href="/" className="flex items-center text-2xl md:text-3xl text-white hover:text-cyan-400 transition-colors" aria-label="Karta Jati Home">
+              <GiPineTree className="hover:scale-110 transition-transform" />
             </a>
           </div>
           
           {/* Desktop Menu - Centered */}
-          <nav className="hidden md:flex md:absolute md:left-1/2 md:transform md:-translate-x-1/2 md:space-x-8" aria-label="Main navigation">
+          <nav className="hidden md:flex md:absolute md:left-1/2 md:transform md:-translate-x-1/2 md:space-x-8 md:z-10" aria-label="Main navigation">
             <a 
               href="#about" 
               className="text-gray-300 hover:text-white transition-colors font-medium"
@@ -91,7 +92,7 @@ const Header: React.FC<HeaderProps> = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 rounded-md text-gray-300 hover:text-white"
+            className="md:hidden p-2 rounded-md text-gray-300 hover:text-white z-10 relative"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -115,7 +116,7 @@ const Header: React.FC<HeaderProps> = () => {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <nav className="md:hidden py-3 px-4 space-y-3" aria-label="Mobile navigation">
+          <nav className="md:hidden absolute top-full left-0 right-0 mt-2 bg-gray-500/20 backdrop-blur-md rounded-2xl border border-gray-400/30 shadow-lg py-4 px-4 space-y-2 z-50" aria-label="Mobile navigation">
             <a
               href="#about"
               className="block text-gray-300 hover:text-white transition-colors font-medium"

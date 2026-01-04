@@ -1,5 +1,5 @@
 import * as React from "react"
-import { FaFolder } from "react-icons/fa"
+import { GiPineTree } from "react-icons/gi"
 import Particles from "./Particles"
 
 interface PortfolioItem {
@@ -84,7 +84,7 @@ const Portfolio: React.FC<PortfolioProps> = () => {
             >
               <div className="text-center">
                 <div className="w-full h-32 bg-gray-600/40 rounded-lg mb-4 flex items-center justify-center">
-                  <FaFolder className="text-5xl text-gray-400" />
+                  <GiPineTree className="text-5xl text-cyan-400" />
                 </div>
                 <h3 className="text-lg font-semibold text-white">
                   Comingsoon

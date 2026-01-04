@@ -136,7 +136,7 @@ const About: React.FC<AboutProps> = () => {
             </div>
             <h3 className="text-xl font-bold text-white mb-3">Integritas</h3>
             <p className="text-gray-400">
-              Kami menjunjung tinggi kejujuran dan keadilan dalam semua aspek bisnis.
+              Kami berkomitmen untuk menjunjung tinggi prinsip integritas melalui penerapan kejujuran, transparansi, dan keadilan dalam seluruh aktivitas dan pengambilan keputusan bisnis.
             </p>
           </div>
           
@@ -149,7 +149,7 @@ const About: React.FC<AboutProps> = () => {
             </div>
             <h3 className="text-xl font-bold text-white mb-3">Inovasi</h3>
             <p className="text-gray-400">
-              Kami senantiasa mencari cara-cara baru untuk meningkatkan kinerja dan memberikan nilai tambah bagi klien.
+              Kami mendorong inovasi berkelanjutan untuk menghasilkan solusi bernilai tambah yang relevan dengan kebutuhan klien.
             </p>
           </div>
           
@@ -162,7 +162,7 @@ const About: React.FC<AboutProps> = () => {
             </div>
             <h3 className="text-xl font-bold text-white mb-3">Kolaborasi</h3>
             <p className="text-gray-400">
-              Kami bekerja sama sebagai satu tim untuk mencapai tujuan bersama.
+              Kami mampu berkolaborasi dengan mitra bisnis untuk menghasilkan solusi yang optimal dan efektif, serta membangun hubungan yang baik dan saling menguntungkan.
             </p>
           </div>
         </div>

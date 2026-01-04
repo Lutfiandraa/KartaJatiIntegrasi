@@ -1,5 +1,6 @@
 import * as React from "react"
 import Particles from "./Particles"
+import { GiPineTree } from "react-icons/gi"
 
 interface FooterProps {}
 
@@ -10,7 +11,10 @@ const Footer: React.FC<FooterProps> = () => {
       <div className="container-custom relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
           <div>
-            <h3 className="text-2xl font-bold mb-4">Karta Jati Integrasi</h3>
+            <h3 className="text-2xl font-bold mb-4 flex items-center">
+              <GiPineTree className="mr-2 text-cyan-400" />
+              Karta Jati Integrasi
+            </h3>
             <p className="text-gray-400 mb-4">
               Solusi Integrasi Teknologi dan Digitalisasi Kebutuhan anda
             </p>

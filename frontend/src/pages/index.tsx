@@ -34,7 +34,7 @@ export default IndexPage
 
 export const Head: React.FC = () => (
   <>
-    <title>Karta Jati Integrasi - Solusi Integrasi Teknologi dan Digitalisasi Kebutuhan anda</title>
+    <title>Karta Jati Integrasi - Solusi Integrasi Teknologi dan Digitalisasi Kebutuhan Bisnis anda</title>
     <meta name="description" content="Karta Jati Integrasi membantu mitra bisnis mengoptimalkan teknologi dengan pendekatan sederhana namun powerful." />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
